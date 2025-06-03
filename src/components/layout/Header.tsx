@@ -1,6 +1,6 @@
-import { React, useState } from 'react';
+import React, { useState } from 'react';
 import { Shield, X } from 'lucide-react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 interface HeaderProps {
   isQuizActive: boolean;
@@ -9,6 +9,7 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ isQuizActive, onCloseQuiz }) => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
@@ -30,6 +31,7 @@ const Header: React.FC<HeaderProps> = ({ isQuizActive, onCloseQuiz }) => {
 
   const handleLogoClick = () => {
     if (isQuizActive) onCloseQuiz();
+    navigate('/');
     setIsMobileMenuOpen(false);
   };
 
